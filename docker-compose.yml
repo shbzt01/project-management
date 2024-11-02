@@ -23,9 +23,13 @@ services:
       timeout: 10s
       retries: 3
   helper:
-    image: eloufirhatim/helper:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: helper-server
     environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
       - DB_CONNECTION=mysql
       - DB_HOST=sqldb
       - DB_PORT=3306
@@ -44,4 +48,5 @@ services:
     ports:
       - 8000:8000
     volumes:
+      - ./:/app
       - /etc/localtime:/etc/localtime

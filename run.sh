@@ -1,4 +1,7 @@
 #!/bin/bash
+composer install
+npm install
+php artisan key:generate
 php artisan queue:work &
 php artisan migrate
 php artisan db:seed
